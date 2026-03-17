@@ -1,0 +1,85 @@
+/**/controller_manager:
+  ros__parameters:
+    update_rate: 300
+
+    # 조인트별 PI 위치-제어기(출력: effort)
+    rj_dg_pospid: { type: pid_controller/PidController }
+
+    # 상태 브로드캐스터(옵션이지만 보통 함께 사용)
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+# ------------- 각 조인트별 PI 게인 -------------
+/**/rj_dg_pospid:
+  ros__parameters:
+    dof_names:
+      [
+        rj_dg_1_1,
+        rj_dg_1_2,
+        rj_dg_1_3,
+        rj_dg_1_4,
+        rj_dg_2_1,
+        rj_dg_2_2,
+        rj_dg_2_3,
+        rj_dg_2_4,
+        rj_dg_3_1,
+        rj_dg_3_2,
+        rj_dg_3_3,
+        rj_dg_3_4,
+        rj_dg_4_1,
+        rj_dg_4_2,
+        rj_dg_4_3,
+        rj_dg_4_4,
+        rj_dg_5_1,
+        rj_dg_5_2,
+        rj_dg_5_3,
+        rj_dg_5_4,
+      ]
+    command_interface: effort
+    reference_and_state_interfaces: ["position"]
+    gains:
+      rj_dg_1_1: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_1_2: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_1_3: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_1_4: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_2_1: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_2_2: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_2_3: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_2_4: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_3_1: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_3_2: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_3_3: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_3_4: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_4_1: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_4_2: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_4_3: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_4_4: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_5_1: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_5_2: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_5_3: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+      rj_dg_5_4: { p: 1.5, i: 0.0, d: 0.0, i_clamp_max: 0.0, i_clamp_min: 0.0 }
+# Joint State Broadcaster
+/**/joint_state_broadcaster:
+  ros__parameters:
+    update_rate: 300
+    joints:
+      - rj_dg_1_1
+      - rj_dg_1_2
+      - rj_dg_1_3
+      - rj_dg_1_4
+      - rj_dg_2_1
+      - rj_dg_2_2
+      - rj_dg_2_3
+      - rj_dg_2_4
+      - rj_dg_3_1
+      - rj_dg_3_2
+      - rj_dg_3_3
+      - rj_dg_3_4
+      - rj_dg_4_1
+      - rj_dg_4_2
+      - rj_dg_4_3
+      - rj_dg_4_4
+      - rj_dg_5_1
+      - rj_dg_5_2
+      - rj_dg_5_3
+      - rj_dg_5_4

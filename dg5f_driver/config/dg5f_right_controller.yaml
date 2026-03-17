@@ -1,0 +1,235 @@
+/**/controller_manager:
+  ros__parameters:
+    update_rate: 100 # Joint state pub rate
+    diagnostics:
+      threshold:
+        controller_manager:
+          periodicity:
+            mean_error:
+              warn: 1.0
+              error: 10.0
+            standard_deviation:
+              warn: 1.0
+              error: 10.0
+        controllers:
+          execution_time:
+            mean_error:
+              warn: 10.0
+              error: 2000.0
+            standard_deviation:
+              warn: 10.0
+              error: 200.0
+          periodicity:
+            mean_error:
+              warn: 1.0
+              error: 10.0
+            standard_deviation:
+              warn: 1.0
+              error: 10.0
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    dg5f_right_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+/**/dg5f_right_controller:
+  ros__parameters:
+    state_publish_rate: 500.0 # 50Hz에서 500Hz로 변경
+    action_monitor_rate: 500.0 # 20Hz에서 500Hz로 변경
+    allow_nonzero_velocity_at_trajectory_end: false
+    allow_partial_joints_goal: true
+
+    joints:
+      - rj_dg_1_1
+      - rj_dg_1_2
+      - rj_dg_1_3
+      - rj_dg_1_4
+      - rj_dg_2_1
+      - rj_dg_2_2
+      - rj_dg_2_3
+      - rj_dg_2_4
+      - rj_dg_3_1
+      - rj_dg_3_2
+      - rj_dg_3_3
+      - rj_dg_3_4
+      - rj_dg_4_1
+      - rj_dg_4_2
+      - rj_dg_4_3
+      - rj_dg_4_4
+      - rj_dg_5_1
+      - rj_dg_5_2
+      - rj_dg_5_3
+      - rj_dg_5_4
+
+    command_interfaces:
+      - effort
+    state_interfaces:
+      - position
+      - velocity
+
+    gains:
+      rj_dg_1_1:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_1_2:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_1_3:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_1_4:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_2_1:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_2_2:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_2_3:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_2_4:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_3_1:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_3_2:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_3_3:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_3_4:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_4_1:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_4_2:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_4_3:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_4_4:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_5_1:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_5_2:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_5_3:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+      rj_dg_5_4:
+        p: 1.5
+        i: 0.0
+        d: 0.0
+        i_clamp_max: 0.0
+        i_clamp_min: 0.0
+        ff_velocity_scale: 0.0001
+
+/**/joint_state_broadcaster:
+  ros__parameters:
+    update_rate: 100 # Joint state pub rate (must be <= controller_manager update_rate)
+    joints:
+      - rj_dg_1_1
+      - rj_dg_1_2
+      - rj_dg_1_3
+      - rj_dg_1_4
+      - rj_dg_2_1
+      - rj_dg_2_2
+      - rj_dg_2_3
+      - rj_dg_2_4
+      - rj_dg_3_1
+      - rj_dg_3_2
+      - rj_dg_3_3
+      - rj_dg_3_4
+      - rj_dg_4_1
+      - rj_dg_4_2
+      - rj_dg_4_3
+      - rj_dg_4_4
+      - rj_dg_5_1
+      - rj_dg_5_2
+      - rj_dg_5_3
+      - rj_dg_5_4
