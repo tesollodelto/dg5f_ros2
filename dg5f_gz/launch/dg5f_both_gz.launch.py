@@ -56,7 +56,7 @@ def generate_launch_description():
     # Get package paths
     pkg_description = FindPackageShare(
         "dg5f_description").find("dg5f_description")
-    model_path = os.path.join(pkg_description, "meshes")
+    model_path = os.path.dirname(pkg_description)
 
     sdf_path = FindPackageShare("dg5f_gz").find("dg5f_gz")
     world_path = os.path.join(sdf_path, "config", "world.sdf")
