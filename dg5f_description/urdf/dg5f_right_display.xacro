@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot name="dg5f_right" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Fingertip type per finger: "default" or "type1" -->
+    <xacro:arg name="tip1_type" default="default" />
+    <xacro:arg name="tip2_type" default="default" />
+    <xacro:arg name="tip3_type" default="default" />
+    <xacro:arg name="tip4_type" default="default" />
+    <xacro:arg name="tip5_type" default="default" />
+
+    <!-- Base options -->
+    <xacro:arg name="base_type" default="default" />
+    <xacro:arg name="with_mount" default="true" />
+
+    <!-- Include macro -->
+    <xacro:include filename="$(find dg5f_description)/urdf/dg5f_macro.xacro" />
+
+    <!-- Base link -->
+    <link name="base_link" />
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="rl_dg_base_link" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <!-- Instantiate right hand with per-finger tip types -->
+    <xacro:dg5f_hand
+        side="right"
+        base_type="$(arg base_type)"
+        with_mount="$(arg with_mount)"
+        tip1_type="$(arg tip1_type)"
+        tip2_type="$(arg tip2_type)"
+        tip3_type="$(arg tip3_type)"
+        tip4_type="$(arg tip4_type)"
+        tip5_type="$(arg tip5_type)"
+    />
+
+</robot>
