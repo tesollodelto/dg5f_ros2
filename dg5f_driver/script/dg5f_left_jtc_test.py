@@ -121,7 +121,7 @@ class JointTrajectoryPublisher(Node):
 
         point = JointTrajectoryPoint()
         point.positions = self.angles[self.index]
-        point.time_from_start = Duration(sec=0, nanosec=0)
+        point.time_from_start = Duration(sec=2, nanosec=0)
 
         message.points.append(point)
         self.get_logger().info("Joint Trajectory  #{} publish : {}".format(

@@ -29,7 +29,6 @@
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler
-from launch.conditions import IfCondition
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution, LaunchConfiguration
@@ -75,16 +74,7 @@ def generate_launch_description():
     )
 
     # Get URDF via xacro
-    robot_description_content1 = Command(
-        [
-            PathJoinSubstitution([FindExecutable(name="xacro")]),
-            " ",
-            PathJoinSubstitution(
-                [FindPackageShare("dg5f_gz"), "urdf", "dg5f_right_gz.xacro"]
-            ),
-        ]
-    )
-    robot_description_content2 = Command(
+    robot_description_content = Command(
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
@@ -94,8 +84,7 @@ def generate_launch_description():
         ]
     )
 
-    robot_description1 = {"robot_description": robot_description_content1}
-    robot_description2 = {"robot_description": robot_description_content2}
+    robot_description = {"robot_description": robot_description_content}
 
     robot_controllers = PathJoinSubstitution(
         [
@@ -106,31 +95,12 @@ def generate_launch_description():
         ]
     )
 
-    # Node for control
-    control_node = Node(
-        package="controller_manager",
-        executable="ros2_control_node",
-        parameters=[robot_description1, robot_controllers],
-        # remappings=[
-        #     ("~/robot_description", "/robot_description"),
-        # ],
-        output="screen",
-    )
-
     # Robot State Publisher
     node_robot_state_publisher = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="screen",
-        parameters=[robot_description1],
-        # remappings=[("/robot_description", "/robot_description1")]
-    )
-    node_robot_state_other_publisher = Node(
-        package="robot_state_publisher",
-        executable="robot_state_publisher",
-        output="screen",
-        parameters=[robot_description2],
-        remappings=[("/robot_description", "/robot_description_other")],
+        parameters=[robot_description],
     )
 
     gz_spawn_entity = Node(
@@ -167,8 +137,6 @@ def generate_launch_description():
 
     nodes = [
         node_robot_state_publisher,
-        node_robot_state_other_publisher,
-
         gazebo,
         RegisterEventHandler(
             event_handler=OnProcessExit(
@@ -183,8 +151,6 @@ def generate_launch_description():
             )
         ),
         gz_spawn_entity,
-        # control_node,
-        
     ]
 
     return LaunchDescription(nodes)

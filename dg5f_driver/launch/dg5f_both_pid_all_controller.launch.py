@@ -86,6 +86,14 @@ def generate_launch_description():
 
     declared_arguments.append(
         DeclareLaunchArgument(
+            "ft_broadcaster",
+            default_value="false",
+            description="Enable F/T sensor broadcaster (force/torque only, not tactile)"
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "io",
             default_value="false",
             description="Enable IO interface"
