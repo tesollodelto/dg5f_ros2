@@ -50,9 +50,14 @@ ros2 launch dg5f_driver dg5f_left_driver.launch.py
 ros2 launch dg5f_driver dg5f_right_effort_controller.launch.py
 ros2 launch dg5f_driver dg5f_left_effort_controller.launch.py
 
-# PID controller
+# PID controller (20 individual controllers, one per joint)
 ros2 launch dg5f_driver dg5f_right_pid_controller.launch.py
 ros2 launch dg5f_driver dg5f_left_pid_controller.launch.py
+
+# PID all controller (single multi-joint controller)
+ros2 launch dg5f_driver dg5f_right_pid_all_controller.launch.py
+ros2 launch dg5f_driver dg5f_left_pid_all_controller.launch.py
+ros2 launch dg5f_driver dg5f_both_pid_all_controller.launch.py
 
 # Gazebo simulation
 ros2 launch dg5f_gz dg5f_right_gz.launch.py

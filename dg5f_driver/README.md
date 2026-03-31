@@ -13,13 +13,13 @@ cd ~/your_ws
 
 ### Update rosdep
 ```bash
-apt update
+sudo apt update
 rosdep update
 ```
 
 ### Install Specific Dependencies
 ```bash
-rosdep install --from-paths src/DELTO_M_ROS2/dg5f_driver --ignore-src -r -y
+rosdep install --from-paths src/tesollo_ros2/dg5f_ros2/dg5f_driver --ignore-src -r -y
 ```
 
 ### Verify Installation by Building
@@ -158,6 +158,23 @@ ros2 launch dg5f_driver dg5f_both_pid_all_controller.launch.py \
 - **Purpose**: Publish fingertip force/torque data
 - **Sensors**: 5 fingertip F/T sensors per hand
 - **Topic**: `/<namespace>/fingertip_<n>_ft_sensor/wrench`
+
+### Enabling F/T Sensor Data on ROS Topics
+
+Two parameters control F/T sensor functionality. **Both must be enabled** to publish sensor data as ROS topics:
+
+| Parameter | Type | Purpose |
+|-----------|------|---------|
+| `fingertip_sensor` | XACRO parameter | Enables F/T sensor data reading in the hardware interface. Without this, the hardware does not read sensor data. |
+| `ft_broadcaster` | Launch parameter | Loads the `ForceTorqueSensorBroadcaster` controller to publish F/T data as ROS topics. |
+
+> **Warning:** Setting only `ft_broadcaster=true` without `fingertip_sensor=true` will load the broadcaster, but it will publish zero values because the hardware interface is not reading sensor data.
+
+```bash
+# Launch with F/T sensor topics enabled
+ros2 launch dg5f_driver dg5f_right_driver.launch.py \
+    delto_ip:=169.254.186.72 fingertip_sensor:=true ft_broadcaster:=true
+```
 
 ---
 

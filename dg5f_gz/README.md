@@ -18,7 +18,7 @@ cd ~/your_ws
 ### 2️⃣ Update rosdep (without sudo)
 
 ```bash
-apt update
+sudo apt update
 rosdep update
 ```
 
@@ -27,7 +27,7 @@ rosdep update
 ### 3️⃣ Install dependencies only for the specific package (`dg5f_gz`)
 
 ```bash
-rosdep install --from-paths src/DELTO_M_ROS2/dg5f_gz --ignore-src -r -y
+rosdep install --from-paths src --ignore-src -r -y
 ```
 
 - `--from-paths`: Limits dependency checking to the specified path
