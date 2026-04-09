@@ -13,6 +13,7 @@ ROS 2 packages for the **Delto Gripper DG5F** (5-finger robotic hand, left/right
 | `dg5f_description` | URDF/xacro model, meshes, and RViz display launch |
 | `dg5f_driver` | ros2_control hardware driver and controller launch files |
 | `dg5f_gz` | Gazebo simulation |
+| `dg5f_moveit_config` | MoveIt 2 configuration (SRDF, planners, mock hardware) |
 
 ## Dependencies
 
@@ -31,7 +32,7 @@ git clone https://github.com/tesollodelto/dg_tcp_comm.git
 
 ```bash
 cd ~/ros2_ws
-colcon build --packages-select dg5f_description dg5f_driver dg5f_gz
+colcon build --packages-select dg5f_description dg5f_driver dg5f_gz dg5f_moveit_config
 source install/setup.bash
 ```
 
@@ -63,4 +64,15 @@ ros2 launch dg5f_driver dg5f_both_pid_all_controller.launch.py
 ros2 launch dg5f_gz dg5f_right_gz.launch.py
 ros2 launch dg5f_gz dg5f_left_gz.launch.py
 ros2 launch dg5f_gz dg5f_both_gz.launch.py
+
+# Mock hardware (no device required)
+ros2 launch dg5f_driver dg5f_right_mock.launch.py
+ros2 launch dg5f_driver dg5f_left_mock.launch.py
+
+# MoveIt (mock hardware, default)
+ros2 launch dg5f_moveit_config dg5f_right_moveit.launch.py
+ros2 launch dg5f_moveit_config dg5f_left_moveit.launch.py
+
+# MoveIt (real hardware)
+ros2 launch dg5f_moveit_config dg5f_right_moveit.launch.py use_mock:=false delto_ip:=169.254.186.72
 ```
