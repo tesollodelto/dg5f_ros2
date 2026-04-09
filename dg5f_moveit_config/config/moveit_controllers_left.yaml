@@ -1,0 +1,29 @@
+moveit_simple_controller_manager:
+  controller_names:
+    - dg5f_left_controller
+
+  dg5f_left_controller:
+    type: FollowJointTrajectory
+    action_ns: follow_joint_trajectory
+    default: true
+    joints:
+      - lj_dg_1_1
+      - lj_dg_1_2
+      - lj_dg_1_3
+      - lj_dg_1_4
+      - lj_dg_2_1
+      - lj_dg_2_2
+      - lj_dg_2_3
+      - lj_dg_2_4
+      - lj_dg_3_1
+      - lj_dg_3_2
+      - lj_dg_3_3
+      - lj_dg_3_4
+      - lj_dg_4_1
+      - lj_dg_4_2
+      - lj_dg_4_3
+      - lj_dg_4_4
+      - lj_dg_5_1
+      - lj_dg_5_2
+      - lj_dg_5_3
+      - lj_dg_5_4
