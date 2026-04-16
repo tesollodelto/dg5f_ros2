@@ -120,9 +120,12 @@ def generate_launch_description():
         "robot_description_semantic": ParameterValue(srdf_content, value_type=str)
     }
 
-    kinematics_yaml = load_yaml("dg5f_moveit_config", "config/kinematics.yaml")
+    ros_distro = os.environ.get("ROS_DISTRO", "humble")
+    cfg_suffix = "_jazzy" if ros_distro == "jazzy" else ""
+
+    kinematics_yaml = load_yaml("dg5f_moveit_config", f"config/kinematics{cfg_suffix}.yaml")
     joint_limits_yaml = load_yaml("dg5f_moveit_config", "config/joint_limits.yaml")
-    ompl_planning_yaml = load_yaml("dg5f_moveit_config", "config/ompl_planning.yaml")
+    ompl_planning_yaml = load_yaml("dg5f_moveit_config", f"config/ompl_planning{cfg_suffix}.yaml")
     moveit_controllers_yaml = load_yaml("dg5f_moveit_config", "config/moveit_controllers.yaml")
 
     moveit_config = {
